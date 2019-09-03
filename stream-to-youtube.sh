@@ -24,12 +24,12 @@ echo "Using the following as input stream: " $INPUT
 
 
 ffmpeg  -f lavfi \
-	-i anullsrc \
-	-rtsp_transport udp \
-	-i $INPUT \
-	-tune zerolatency \
-	-vcodec mpeg4 \
-	-pix_fmt + \
-	-c:v copy \
-	-c:a aac \
-	-f flv rtmp://a.rtmp.youtube.com/live2/$1
+        -i anullsrc \
+        -rtsp_transport tcp \
+        -i $INPUT \
+        -preset ultrafast \
+        -tune zerolatency \
+        -c:v copy \
+        -pix_fmt yuv420p \
+        -c:a aac \
+        -f flv rtmp://a.rtmp.youtube.com/live2/$1
